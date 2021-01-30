@@ -12,8 +12,5 @@
   %body
     = render 'layouts/navbar'
     .container
-      %p.notice
-        = notice
-      %p.alert
-        = alert
+      = render 'layouts/messages'
       = yield
