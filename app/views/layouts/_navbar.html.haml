@@ -1,25 +1,37 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container
     = link_to 'CourseUp', root_path, class: 'navbar-brand'
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
-        %li{:class => "nav-item #{'active' if request.path == root_path}"}
-          = link_to 'Home', root_path, class: "nav-link"
-        %li.nav-item.dropdown
-          - if current_user
-            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              = current_user.email
-            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-              = link_to 'Account settings', edit_user_registration_path, class: 'dropdown-item'
-              = link_to 'Sign out', destroy_user_session_path, method: :delete,  class: 'dropdown-item'
+        %li{:class => "nav-item #{'active' if current_page?(root_path)}"}
+          = link_to root_path, class: "nav-link" do
+            .fa.fa-home
+            Home
+        %li{:class => "nav-item #{'active' if current_page?(courses_path)}"}
+          = link_to courses_path, class: "nav-link" do
+            .fa.fa-book-open
+            Courses
       - unless current_user
         %ul.navbar-nav.ml-auto
           %li.nav-item
             = link_to 'Sign up', new_user_registration_path, class: 'nav-link'
           %li.nav-item
             = link_to 'Sign in', new_user_session_path, class: 'nav-link'
-      %form.form-inline.my-2.my-lg-0
-        %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-        %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+      .form-inline.my-2.my-lg-0
+        = form_tag(courses_path, method: :get) do
+          .input-group
+            = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+            %span.input-group-append
+              %button.btn.btn-primary.btn-sm{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
+      - if current_user
+        %ul.navbar-nav.ml-auto
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              .fa.fa-user
+              = current_user.email
+            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+              = link_to 'Account settings', edit_user_registration_path, class: 'dropdown-item'
+              = link_to 'Sign out', destroy_user_session_path, method: :delete,  class: 'dropdown-item'
