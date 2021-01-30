@@ -5,10 +5,8 @@
       %span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.mr-auto
-        %li.nav-item.active
-          %a.nav-link{:href => "#"}
-            Home
-            %span.sr-only (current)
+        %li{:class => "nav-item #{'active' if request.path == root_path}"}
+          = link_to 'Home', root_path, class: "nav-link"
         %li.nav-item.dropdown
           - if current_user
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
