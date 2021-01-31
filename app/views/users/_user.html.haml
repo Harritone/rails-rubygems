@@ -1,0 +1,40 @@
+.card.h-100.text-center
+  .card-header
+    .fa.fa-user
+    = link_to user.email, '', class: 'badge badge-primary'
+    = request.path
+  -# .card-body
+  -#   = course.description
+  -# .card-footer.d-flex.flex-column.justify-content-center.align-items-center
+  -#   .row.align-items-center
+  -#     .far.fa-clock.pr-1
+  -#     = course.created_at.strftime('%d %b %Y')
+  -#   .row.align-items-center
+  -#     .fa.fa-chalkboard-teacher.pr-1
+  -#     = course.user.email
+  .card-footer
+    Signed up
+    = time_ago_in_words(user.created_at)
+    ago
+
+  .card-footer
+    %p.card-text
+      = 'sign_in_count'.humanize
+      = user.sign_in_count
+    %p.card-text
+      = 'current_sign_in_at'.humanize
+      = user.current_sign_in_at
+    %p.card-text
+      = 'last_sign_in_at'.humanize
+      = user.last_sign_in_at
+    %p.card-text
+      = 'current_sign_in_ip'.humanize
+      = user.current_sign_in_ip
+    %p.card-text
+      = 'last_sign_in_ip'.humanize
+      = user.last_sign_in_ip
+  -# .card-footer
+  -#   - unless current_page?(course_path(course))
+  -#     = link_to 'Show', course, class: 'btn btn-sm btn-outline-info'
+  -#   = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-outline-warning'
+  -#   = link_to 'Remove', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-outline-danger'

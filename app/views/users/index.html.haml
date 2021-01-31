@@ -1,0 +1,7 @@
+%h1 Listing users
+
+.container-fluid.content-row
+  .row
+    - @users.each do |user|
+      .col-sm-12.col-lg-4.my-4
+        = render 'user', user: user
