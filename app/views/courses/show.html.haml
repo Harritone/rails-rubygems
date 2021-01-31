@@ -1,12 +1,7 @@
-%p#notice= notice
+%ol.breadcrumb
+  %li.breadcrumb-item
+    = link_to 'Courses', courses_path
+  %li.breadcrumb-item
+    = @course.title
 
-%p
-  %b Title:
-  = @course.title
-%p
-  %b Description:
-  = @course.description
-
-= link_to 'Edit', edit_course_path(@course)
-\|
-= link_to 'Back', courses_path
+= render 'course', course: @course

@@ -4,34 +4,45 @@
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
-      %ul.navbar-nav.mr-auto
-        %li{:class => "nav-item #{'active' if current_page?(root_path)}"}
-          = link_to root_path, class: "nav-link" do
-            .fa.fa-home
-            Home
-        %li{:class => "nav-item #{'active' if current_page?(courses_path)}"}
-          = link_to courses_path, class: "nav-link" do
-            .fa.fa-book-open
-            Courses
+      - if current_user
+        %ul.navbar-nav.mr-auto
+          %li{:class => "nav-item #{'active' if current_page?(root_path)}"}
+            = link_to root_path, class: "nav-link" do
+              .fa.fa-home
+              Home
+          %li{class: "nav-item #{'active' if current_page?(courses_path)} dropdown"}
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              .fa.fa-book-open
+              Courses
+            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+              = link_to courses_path, class: "dropdown-item #{'active' if current_page?(courses_path)}" do
+                .fa.fa-book
+                All courses
+              = link_to new_course_path, class: "dropdown-item #{'active' if current_page?(new_course_path)}" do
+                .fa.fa-plus
+                Add course
+        .form-inline.my-2.my-lg-0.ml-auto
+          = form_tag(courses_path, method: :get) do
+            .input-group
+              = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+              %span.input-group-append
+                %button.btn.btn-primary.btn-sm{:type => "submit"}
+                  %span.fa.fa-search{"aria-hidden" => "true"}
+        %ul.navbar-nav
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              .fa.fa-user
+              = current_user.email
+            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+              = link_to edit_user_registration_path, class: 'dropdown-item' do
+                .fa.fa-cog
+                Account settings
+              = link_to destroy_user_session_path, method: :delete,  class: 'dropdown-item' do
+                .fa.fa-sign-out-alt
+                Sign out
       - unless current_user
         %ul.navbar-nav.ml-auto
           %li.nav-item
             = link_to 'Sign up', new_user_registration_path, class: 'nav-link'
           %li.nav-item
             = link_to 'Sign in', new_user_session_path, class: 'nav-link'
-      .form-inline.my-2.my-lg-0
-        = form_tag(courses_path, method: :get) do
-          .input-group
-            = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
-            %span.input-group-append
-              %button.btn.btn-primary.btn-sm{:type => "submit"}
-                %span.fa.fa-search{"aria-hidden" => "true"}
-      - if current_user
-        %ul.navbar-nav.ml-auto
-          %li.nav-item.dropdown
-            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              .fa.fa-user
-              = current_user.email
-            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-              = link_to 'Account settings', edit_user_registration_path, class: 'dropdown-item'
-              = link_to 'Sign out', destroy_user_session_path, method: :delete,  class: 'dropdown-item'

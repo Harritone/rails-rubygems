@@ -1,0 +1,18 @@
+.card.h-100.text-center
+  .card-header
+    .fa.fa-book
+    = link_to course.title, course, class: 'badge badge-primary'
+  .card-body
+    = course.description
+  .card-footer.d-flex.flex-column.justify-content-center.align-items-center
+    .row.align-items-center
+      .far.fa-clock.pr-1
+      = course.created_at.strftime('%d %b %Y')
+    .row.align-items-center
+      .fa.fa-chalkboard-teacher.pr-1
+      = course.user.email
+  .card-footer
+    - unless current_page?(course_path(course))
+      = link_to 'Show', course, class: 'btn btn-sm btn-outline-info'
+    = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-outline-warning'
+    = link_to 'Remove', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-outline-danger'
