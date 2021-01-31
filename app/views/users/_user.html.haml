@@ -33,6 +33,12 @@
     %p.card-text
       = 'last_sign_in_ip'.humanize
       = user.last_sign_in_ip
+  .card-footer
+    Confirmed email?
+    - if user.confirmed_at.present?
+      .badge.badge-success Yes
+    - else
+      .bage.badge-danger No
   -# .card-footer
   -#   - unless current_page?(course_path(course))
   -#     = link_to 'Show', course, class: 'btn btn-sm btn-outline-info'
