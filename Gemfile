@@ -32,6 +32,7 @@ gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 gem 'simple_form'
 gem 'faker'
 gem 'devise'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
