@@ -1,9 +1,9 @@
 .card.h-100.text-center
   .card-header
-    .fa.fa-book
-    = link_to course.title, course, class: 'badge badge-primary'
+    .fa.fa-graduation-cap.fa-2x
+      = link_to course.title, course, class: 'text-white badge badge-secondary'
   .card-body
-    = course.description
+    = course.short_description
   .card-footer.d-flex.flex-column.justify-content-center.align-items-center
     .row.align-items-center
       .far.fa-clock.pr-1
@@ -11,6 +11,13 @@
     .row.align-items-center
       .fa.fa-chalkboard-teacher.pr-1
       = course.user.email
+  .card-footer
+    .fa.fa-globe-africa
+      = course.language
+    .fa.fa-signal
+      = course.level
+    .fas.fa-money-bill-wave-alt
+      = number_to_currency(course.price)
   .card-footer
     - unless current_page?(course_path(course))
       = link_to 'Show', course, class: 'btn btn-sm btn-outline-info'

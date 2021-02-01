@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.form-control {
+  &.is-valid,
+  &.is-invalid {
+    background-image: none !important;
+  }
+}

@@ -12,11 +12,11 @@
               Home
           %li{class: "nav-item #{'active' if request.path.include?('courses')} dropdown"}
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              .fa.fa-book-open
+              .fa.fa-graduation-cap
               Courses
             .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
               = link_to courses_path, class: "dropdown-item #{'active' if current_page?(courses_path)}" do
-                .fa.fa-book
+                .fa.fa-graduation-cap
                 All courses
               = link_to new_course_path, class: "dropdown-item #{'active' if current_page?(new_course_path)}" do
                 .fa.fa-plus

@@ -9,7 +9,10 @@ class Course < ApplicationRecord
   # end
 
   validates :title, presence: true, length: {minimum: 5 }
+  validates :short_description, :level, :language, :price, presence: :true
+  validates :price, numericality: {greater_than_or_equal_to: 0}
   validates :description, presence: :true, length: {minimum:5} 
+
 
   has_rich_text :description
 
