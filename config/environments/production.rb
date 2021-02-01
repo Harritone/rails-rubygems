@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require 'aws'
 
 Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'https://boiling-tundra-66334.herokuapp.com/', protocol: 'https'}
