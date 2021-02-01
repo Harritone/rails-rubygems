@@ -1,5 +1,4 @@
 require "active_support/core_ext/integer/time"
-require 'aws-sdk'
 
 Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'https://boiling-tundra-66334.herokuapp.com/', protocol: 'https'}
@@ -15,8 +14,6 @@ Rails.application.configure do
   #   authentication: :plain,
   #   enable_starttls_auto: true
   # }
-  aws_credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_ACCESS_KEY_ID'])
-  Aws.add_action_mailer_delivery_method(:aws_ses, credentials: aws_credentials, region: ENV['AWS_REGION'])
 
   config.action_mailer.delivery_method = :aws_ses
   # Settings specified here will take precedence over those in config/application.rb.
