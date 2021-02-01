@@ -28,7 +28,7 @@
             .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
               = link_to users_path, class: "dropdown-item #{'active' if current_page?(users_path)}" do
                 .fa.fa-users
-                  All users
+                All users
               = link_to new_course_path, class: "dropdown-item #{'active' if current_page?(new_course_path)}" do
                 .fa.fa-plus
                 Add course
