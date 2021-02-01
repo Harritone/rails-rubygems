@@ -1,21 +1,21 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  # config.action_mailer.default_url_options = { host: 'https://boiling-tundra-66334.herokuapp.com/', protocol: 'https'}
-  # config.action_mailer.perform_deliveries = true
-  # config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'https://boiling-tundra-66334.herokuapp.com/', protocol: 'https'}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   port: 587,
-  #   address: 'email-smtp.eu-central-1.amazonaws.com',
-  #   user_name: 'AKIAZORADUBETC47PUHV',
-  #   password: 'BIpjDBUHclXj/mE/1ftxArbD9U7T8cPMi+eG36ojhuWH',
-  #   authentication: :plain,
-  #   enable_starttls_auto: true
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'email-smtp.eu-central-1.amazonaws.com',
+    user_name: ENV['SMTP_USER_NAME'],
+    password: ENV['SMTP_PASSWORD'],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
-  config.action_mailer.delivery_method = :aws_ses
+  # config.action_mailer.delivery_method = :aws_ses
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
