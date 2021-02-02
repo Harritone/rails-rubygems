@@ -6,11 +6,12 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    if params[:title]
-      @courses = Course.where('title LIKE ?', "%#{params[:title]}%")
-    else
-      @courses = Course.all
-    end
+    # if params[:title]
+    #   @courses = Course.where('title LIKE ?', "%#{params[:title]}%")
+    # else
+      @q = Course.ransack(params[:q])
+      @courses = @q.result(distinct: true)
+    # end
   end
 
   # GET /courses/1 or /courses/1.json
