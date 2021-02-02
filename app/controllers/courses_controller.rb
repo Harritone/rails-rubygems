@@ -1,6 +1,9 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
+  # @q = Person.ransack(params[:q])
+  # @people = @q.result(distinct: true)
+
   # GET /courses or /courses.json
   def index
     if params[:title]

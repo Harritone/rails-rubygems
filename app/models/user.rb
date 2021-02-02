@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :courses
+
+  private
+  ransacker :sign_in_count do
+    Arel.sql("to_char(\"#{table_name}\".\"sign_in_count\", '99999')")
+  end
 end
