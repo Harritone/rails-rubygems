@@ -1,33 +1,26 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
-  # @q = Person.ransack(params[:q])
-  # @people = @q.result(distinct: true)
-
-  # GET /courses or /courses.json
   def index
-    # if params[:title]
-    #   @courses = Course.where('title LIKE ?', "%#{params[:title]}%")
-    # else
       @q = Course.ransack(params[:q])
-      @courses = @q.result(distinct: true)
-    # end
+      if params[:courses_search]
+        @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+        @courses = @ransack_courses.result.includes(:user)
+      else
+        @courses = @q.result(distinct: true)
+      end
   end
 
-  # GET /courses/1 or /courses/1.json
   def show
   end
 
-  # GET /courses/new
   def new
     @course = Course.new
   end
 
-  # GET /courses/1/edit
   def edit
   end
 
-  # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
     @course.user = current_user

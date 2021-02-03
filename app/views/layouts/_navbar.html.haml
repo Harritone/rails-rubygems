@@ -33,9 +33,9 @@
                 .fa.fa-plus
                 Add course
         .form-inline.my-2.my-lg-0.ml-auto
-          = form_tag(courses_path, method: :get) do
+          = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
             .input-group
-              = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+              = f.search_field :title_or_short_description_cont, class: 'form-contorl-sm', placeholder: 'Find a course', autocomplete: :off
               %span.input-group-append
                 %button.btn.btn-primary.btn-sm{:type => "submit"}
                   %span.fa.fa-search{"aria-hidden" => "true"}
