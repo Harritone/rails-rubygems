@@ -10,6 +10,10 @@
             = link_to root_path, class: "nav-link" do
               .fa.fa-home
               Home
+          %li{:class => "nav-item #{'active' if current_page?(activity_path)}"}
+            = link_to activity_path, class: "nav-link" do
+              .fa.fa-bell
+              Activity
           %li{class: "nav-item #{'active' if request.path.include?('courses')} dropdown"}
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               .fa.fa-graduation-cap
