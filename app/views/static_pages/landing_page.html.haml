@@ -1,13 +1,14 @@
 .jumbotron
-  .display-4
+  .display-4.mb-4
     What do you want to learn today?
 
-  = form_tag(courses_path, method: :get) do
-    .input-group.pt-5
-      = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
-      %span.input-group-append
-        %button.btn.btn-primary.btn-sm{:type => "submit"}
-          %span.fa.fa-search{"aria-hidden" => "true"}
+  - if current_user
+    = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+      .input-group
+        = f.search_field :title_or_short_description_cont, class: 'form-contorl-sm', placeholder: 'Find a course', autocomplete: :off
+        %span.input-group-append
+          %button.btn.btn-primary.btn-sm{:type => "submit"}
+            %span.fa.fa-search{"aria-hidden" => "true"}
 
 .card-group
   .card.card-body

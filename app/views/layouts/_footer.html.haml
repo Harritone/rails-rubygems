@@ -1,0 +1,23 @@
+%hr
+%footer.mt-auto.bg-dark.text-white.py-4
+  .container
+    .row.d-flex
+      .col-md-4.d-flex.flex-column.align-items-center
+        .row.mb-1
+          Copyright
+          &copy;
+          = Time.now.year
+          CourseUp
+        .row
+          .fa.fa-envelope
+            = mail_to 'idnilov@gmail.com'
+      .col-md-4.d-flex.flex-column.align-items-center
+        .row.mb-1
+          Privacy policy
+        .row
+          Terms and conditions
+      .col-md-4.d-flex.flex-column.align-items-center
+        .row.mb-1
+          About us
+        .row
+          = link_to 'Teach', new_course_path

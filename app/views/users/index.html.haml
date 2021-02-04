@@ -1,4 +1,7 @@
-%h1 Listing users
+%h2.text-center
+  Users
+  .badge.badge-info
+    = @users.count
 
 = search_form_for @q do |f|
   = link_to users_path, class: 'btn btn-outline-secondary mr-1' do

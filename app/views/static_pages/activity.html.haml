@@ -1,10 +1,15 @@
-%h1.text-center Activity
+%h2.text-center
+  Activities
+  .badge.badge-info
+    = @activities.count
+
 - @activities.each do |activity|
-  .row
-  = activity.id
-  = activity.trackable_type
-  = activity.trackable_id
-  = link_to activity.trackable, activity.trackable
-  = activity.key
-  = activity.parameters
-  = activity.owner
+  %ul.list-group.col-md-8.container-fluid
+    %li.list-group-item.m-2
+      = activity.id
+      = activity.trackable_type
+      = activity.trackable_id
+      = link_to activity.trackable, activity.trackable
+      = activity.key
+      = activity.parameters
+      = activity.owner
