@@ -33,6 +33,10 @@
     %p.card-text
       = 'last_sign_in_ip'.humanize
       = user.last_sign_in_ip
+    %p.card-text
+      - user.roles.map(&:name).each do |name|
+        .badge.badge-info
+          = name
   .card-footer
     Confirmed email?
     - if user.confirmed_at.present?
