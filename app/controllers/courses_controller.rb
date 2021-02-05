@@ -2,13 +2,13 @@ class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
   def index
-      @q = Course.ransack(params[:q])
-      if params[:courses_search]
-        @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
-        @courses = @ransack_courses.result.includes(:user)
-      else
-        @courses = @q.result(distinct: true)
-      end
+    @q = Course.ransack(params[:q])
+    if params[:courses_search]
+      @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+      @courses = @ransack_courses.result.includes(:user)
+    else
+      @courses = @q.result(distinct: true)
+    end
   end
 
   def show
@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    authorize @course
   end
 
   def edit
@@ -24,6 +25,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    authorize @course
     @course.user = current_user
 
     respond_to do |format|
@@ -39,6 +41,7 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
+    authorize @course
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: "Course was successfully updated." }
@@ -52,6 +55,7 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
+    authorize @course
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }

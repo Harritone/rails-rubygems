@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController #save current user using gem public_activity
 
   include Pundit
-  protect_from_forgery
+  # protect_from_forgery
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
    

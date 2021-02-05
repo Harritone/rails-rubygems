@@ -2,7 +2,6 @@
   .card-header
     .fa.fa-user
     = link_to user.email, '', class: 'badge badge-primary'
-    = request.path
   .card-footer
     Signed up
     = time_ago_in_words(user.created_at)

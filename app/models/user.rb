@@ -29,8 +29,18 @@ class User < ApplicationRecord
     email
   end
 
+  validate :must_have_a_role, on: :update
+
+
   private
-    ransacker :sign_in_count do
-      Arel.sql("to_char(\"#{table_name}\".\"sign_in_count\", '99999')")
+
+  ransacker :sign_in_count do
+    Arel.sql("to_char(\"#{table_name}\".\"sign_in_count\", '99999')")
+  end
+
+  def must_have_a_role
+    unless roles.any?
+      errors.add(:roles, 'must have at least one role')
     end
+  end
 end
