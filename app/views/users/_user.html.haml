@@ -2,6 +2,10 @@
   .card-header
     .fa.fa-user
     = link_to user.email, user_path(user), class: 'badge badge-primary'
+    - if user.online?
+      .fa.fa-circle.text-success
+    - else
+      .fa.fa-circle.text-danger
   .card-footer
     Signed up
     = time_ago_in_words(user.created_at)

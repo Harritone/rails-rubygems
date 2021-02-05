@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController #save current user using gem public_activity
+  include Pundit
+
   before_action :authenticate_user!
   before_action :set_global_variables, if: :user_signed_in?
 
-  include PublicActivity::StoreController #save current user using gem public_activity
-
-  include Pundit
-  # protect_from_forgery
+  after_action :user_activity
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
    
@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def user_activity
+    current_user.try :touch
+  end
 
   def user_not_authorized #pundit
     flash[:alert] = "You are not authorized to perform this action."
