@@ -1,5 +1,12 @@
+%ol.breadcrumb
+  %li.breadcrumb-item
+    = link_to 'Home', root_path
+  %li.breadcrumb-item
+    = link_to 'Courses', courses_path
+  %li.breadcrumb-item
+    = link_to @course.title, course_path(@course)
+  %li.breadcrumb-item
+    New lesson
+
 %h1 New lesson
-
 = render 'form'
-
-= link_to 'Back', course_path(Course.find(params[:course_id]))

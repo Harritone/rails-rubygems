@@ -9,7 +9,7 @@
 .row.mb-2
   .col-lg-6
   .col-lg-6
-    = link_to 'Add lesson', new_lesson_path(course_id: @course.id)
+    = link_to 'Add lesson', new_course_lesson_path(@course, @lesson)
 .row
   .col-lg-6
     .card.text-center
