@@ -9,6 +9,14 @@ class LessonPolicy < ApplicationPolicy
     @record.course.user_id == @user.id
   end
 
+  def new?
+    # @record.course.user_id == @user.id
+  end
+
+  def create?
+    @record.course.user_id == @user.id
+  end
+
   def update?
     @record.course.user_id == @user.id
   end
