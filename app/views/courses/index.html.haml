@@ -37,4 +37,5 @@
       .row
         - @courses.each do |course|
           .col-sm-12.col-lg-4.my-4
-            = render 'course', course: course
+            .card.h-100.text-center
+              = render 'course', course: course

@@ -1,4 +1,15 @@
 %h1 Editing lesson
+%ol.breadcrumb
+  %li.breadcrumb-item
+    = link_to 'Home', root_path
+  %li.breadcrumb-item
+    = link_to 'Courses', courses_path
+  %li.breadcrumb-item
+    = link_to @lesson.course.title, course_path(@lesson.course)
+  %li.breadcrumb-item
+    = link_to @lesson.title, @lesson
+  %li.breadcrumb-item
+    Editing
 
 = render 'form'
 

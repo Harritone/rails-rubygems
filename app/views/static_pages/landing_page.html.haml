@@ -46,7 +46,8 @@
   .row
     - @courses_pop.each do |course|
       .col-sm-12.col-lg-4.my-4
-        = render 'courses/course', course: course
+        .card
+          = render 'courses/course', course: course
 %hr
 %h2
   Top rated courses
@@ -54,7 +55,8 @@
   .row
     - @courses_top.each do |course|
       .col-sm-12.col-lg-4.my-4
-        = render 'courses/course', course: course
+        .card
+          = render 'courses/course', course: course
 %hr
 %h2
   Most recent coures
@@ -62,5 +64,6 @@
   .row
     - @courses_latest.each do |course|
       .col-sm-12.col-lg-4.my-4
-        = render 'courses/course', course: course
+        .card
+          = render 'courses/course', course: course
 %hr
