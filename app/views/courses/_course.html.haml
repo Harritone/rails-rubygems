@@ -12,6 +12,9 @@
       .fa.fa-chalkboard-teacher.pr-1
       = course.user.username
   .card-footer
+    .fa.fa-book
+    = course.lessons.count
+  .card-footer
     .fa.fa-globe-africa
       = course.language
     .fa.fa-signal
