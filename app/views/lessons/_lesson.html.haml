@@ -1,12 +1,11 @@
 .card.mb-2
   .card-header
+    .far.fa-check-square
     = link_to lesson.title, course_lesson_path(@course, lesson)
   -if policy(lesson).show?
     .card-body
       .row
         = lesson.content
-      .row
-        = lesson.course
   - if policy(lesson).edit?
     .card-footer
       = link_to 'Edit', edit_course_lesson_path(@course, lesson), class: 'btn btn-sm btn-outline-warning' if policy(lesson).edit?
