@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   after_action :user_activity
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  include Pagy::Backend
    
   def set_global_variables
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)

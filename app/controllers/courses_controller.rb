@@ -3,12 +3,13 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(params[:q])
-    if params[:courses_search]
+    # if params[:courses_search]
       @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
-      @courses = @ransack_courses.result.includes(:user)
-    else
-      @courses = @q.result(distinct: true)
-    end
+      # @courses = @ransack_courses.result.includes(:user)
+    # else
+      # @courses = @q.result(distinct: true)
+    # end
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
   end
 
   def show
