@@ -6,11 +6,14 @@
   %li.breadcrumb-item
     = @course.title
 
-.row
+.row.mb-2
   .col-lg-6
-    .card
-      = render 'course', course: @course
   .col-lg-6
     = link_to 'Add lesson', new_lesson_path(course_id: @course.id)
+.row
+  .col-lg-6
+    .card.text-center
+      = render 'course', course: @course
+  .col-lg-6
     - @lessons.each do |lesson|
       = render 'lessons/lesson', lesson: lesson

@@ -3,13 +3,6 @@
   = link_to course.title, course, class: 'badge badge-secondary'
 .card-body
   = course.short_description
-.card-footer.d-flex.flex-column.justify-content-center.align-items-center
-  .row.align-items-center
-    .far.fa-clock.pr-1
-    = course.created_at.strftime('%d %b %Y')
-  .row.align-items-center
-    .fa.fa-chalkboard-teacher.pr-1
-    = course.user.username
 .card-footer
   .fa.fa-book
   = course.lessons.count
@@ -20,7 +13,14 @@
     = course.level
   .fas.fa-money-bill-wave-alt
     = number_to_currency(course.price)
-.card-footer
-  = link_to 'Show', course, class: 'btn btn-sm btn-outline-info' unless current_page?(course_path(course))
-  = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-outline-warning' if policy(course).edit?
-  = link_to 'Remove', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-outline-danger' if policy(course).destroy?
+.card-footer.d-flex.justify-content-around.align-items-center
+  .row.align-items-center
+    .far.fa-clock.pr-1
+    = course.created_at.strftime('%d %b %Y')
+  .row.align-items-center
+    .fa.fa-chalkboard-teacher.pr-1
+    = link_to course.user.username, user_path(course.user)
+- if policy(course).edit?
+  .card-footer
+    = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-outline-warning' if policy(course).edit?
+    = link_to 'Remove', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-outline-danger' if policy(course).destroy?
