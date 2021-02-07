@@ -10,7 +10,8 @@
 .row.mt-3
   .col-md-2
     -# .form-inline.pt-4.mr-2
-    = search_form_for @q do |f|
+    -# = search_form_for @q do |f|
+    = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
       .form-group
         = f.label :title
         = f.search_field :title_cont, placeholder: 'Title', class: 'form-control form-control-sm'
@@ -34,7 +35,7 @@
         .fa.fa-sync-alt
         refresh
 
-    = sort_link(@q, :created_at)
+    = sort_link(@ransack_courses, :created_at)
 
   .col-md-10
     .container-fluid.content-row

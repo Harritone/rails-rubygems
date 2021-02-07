@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
   def index
-    @q = Course.ransack(params[:q])
+    # @q = Course.ransack(params[:q])
     # if params[:courses_search]
       @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
       # @courses = @ransack_courses.result.includes(:user)

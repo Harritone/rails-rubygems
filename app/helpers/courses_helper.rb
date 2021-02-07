@@ -14,4 +14,23 @@ module CoursesHelper
       link_to 'Check price', course_path(course), class: 'btn btn-sm btn-outline-success'
     end
   end
+
+  def review_button(course)
+    user_course = course.enrollments.where(user: current_user)
+    if current_user
+      if user_course.any?
+        if user_course.pending_review.any?
+          link_to 'Add a review', edit_enrollment_path(user_course.first), class: 'btn btn-sm btn-outline-warning'
+        else
+          # raw("<p>You've left a review</p>")
+          # link_to 'Review', enrollment_path(user_course.first)
+          link_to enrollment_path(user_course.first) do
+            "<i class='text-warning fa fa-star'></i>".html_safe + " " +
+            "<i class='fa fa-check'></i>".html_safe + " " +
+            'Thanks for reviewing! Your Review'
+          end
+        end
+      end
+    end
+  end
 end
