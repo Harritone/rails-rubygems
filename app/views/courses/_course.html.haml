@@ -11,8 +11,8 @@
     = course.language
   .fa.fa-signal
     = course.level
-  .fas.fa-money-bill-wave-alt
-    = number_to_currency(course.price)
+.card-footer
+  = enrollment_button(course)
 .card-footer.d-flex.justify-content-around.align-items-center
   .row.align-items-center
     .far.fa-clock.pr-1

@@ -46,7 +46,7 @@
   .row
     - @courses_pop.each do |course|
       .col-sm-12.col-lg-4.my-4
-        .card.text-center
+        .card.text-center.h-100
           = render 'courses/course', course: course
 %hr
 %h2
@@ -55,7 +55,7 @@
   .row
     - @courses_top.each do |course|
       .col-sm-12.col-lg-4.my-4
-        .card.text-center
+        .card.text-center.h-100
           = render 'courses/course', course: course
 %hr
 %h2
@@ -64,6 +64,6 @@
   .row
     - @courses_latest.each do |course|
       .col-sm-12.col-lg-4.my-4
-        .card.text-center
+        .card.text-center.h-100
           = render 'courses/course', course: course
 %hr
