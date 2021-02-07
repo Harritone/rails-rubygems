@@ -6,10 +6,12 @@ class User < ApplicationRecord
   
   rolify
 
+  has_many :courses
+  has_many :enrollments
+
   extend FriendlyId
   friendly_id :email, use: :slugged
 
-  has_many :courses
 
   after_create :assign_default_role
 
