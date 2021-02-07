@@ -11,18 +11,19 @@
 - content_for :title do
   CourseUp
   \|
-  Edit
+  Add a review
   = @enrollment
 
 .card
   .card-header
     %h3
-      .fa.fa-lock-open
-      Editing enrollment
+      .fa.fa-star.text-warning
+      Add a Review
 
   .card-body
     = render 'form'
 
-= link_to 'Show', @enrollment
-\|
-= link_to 'Back', enrollments_path
+  .card-footer
+    = link_to 'Show review', @enrollment
+    \|
+    = link_to 'Back to course', course_path(@enrollment.course)

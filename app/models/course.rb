@@ -17,7 +17,7 @@ class Course < ApplicationRecord
   tracked owner: Proc.new {|controller, model| controller.current_user}
 
 
-  LEVELS = [:"Begginer", :"Intermediate", :"Advanced"]
+  LEVELS = %i[Begginer Intermediate Advanced]
 
   def to_s
     title
