@@ -3,8 +3,10 @@ class Enrollment < ApplicationRecord
   belongs_to :user
   validates_uniqueness_of :user_id, scope: :course_id
   validates_uniqueness_of :course_id, scope: :user_id
-
   validate :cant_subscribe_to_own_course
+
+  extend FriendlyId
+  friendly_id :to_s, use: :slugged
 
   scope :pending_review, -> { where(rating: [0, nil, ''], review: [0, nil, '']) }
 
